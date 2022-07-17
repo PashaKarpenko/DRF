@@ -29,7 +29,7 @@ class CalculatorApiView(APIView):
     def post(self, request):
         serializer = CalculatorSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        action = serializer.data["action"]
+        action = serializer.data['action']
         number1 = serializer.data['number1']
         number2 = serializer.data['number2']
         if action == "minus":
