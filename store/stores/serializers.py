@@ -20,7 +20,7 @@ class CalculatorSerializer(serializers.Serializer):
         return data
 
 
-class OrderSerializer(serializers.Serializer):
+class StoreSerializer(serializers.Serializer):
     name = serializers.CharField()
     description = serializers.CharField()
     rating = serializers.IntegerField(min_value=1, max_value=100)

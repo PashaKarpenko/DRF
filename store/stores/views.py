@@ -2,7 +2,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from datetime import date
 from rest_framework.views import APIView
-from .serializers import CalculatorSerializer, OrderSerializer
+from .serializers import CalculatorSerializer, StoreSerializer
 from .models import Store
 from rest_framework.status import HTTP_201_CREATED
 
@@ -46,11 +46,11 @@ class CalculatorApiView(APIView):
 class StoreApiView(APIView):
     def get(self, request):
         stores = Store.objects.all()
-        serializer = OrderSerializer(stores, many=True)
+        serializer = StoreSerializer(stores, many=True)
         return Response(serializer.data)
 
     def post(self, request):
-        serializer = OrderSerializer(data=request.data)
+        serializer = StoreSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(status=HTTP_201_CREATED, data=serializer.data)
