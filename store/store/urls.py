@@ -17,6 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 from stores import views
+from stores.urls import router as my_store_router
+from stores.urls import store_router as store_router
+from stores.urls import admin_router as admin_router
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,5 +28,7 @@ urlpatterns = [
     path('calculator/', views.CalculatorApiView.as_view()),
     path('today/', views.today),
     path('my_name/', views.my_name),
-    path('stores/', views.StoreApiView.as_view())
+    path('stores/', include(store_router.urls)),
+    path('my_stores/', include(my_store_router.urls)),
+    path('admin_stores/', include(admin_router.urls))
 ]

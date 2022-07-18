@@ -20,11 +20,19 @@ class CalculatorSerializer(serializers.Serializer):
         return data
 
 
-class StoreSerializer(serializers.Serializer):
-    name = serializers.CharField()
-    description = serializers.CharField()
-    rating = serializers.IntegerField(min_value=1, max_value=100)
+class StoreSerializer(serializers.ModelSerializer):
 
-    def create(self, validated_data):
-        store = Store.objects.create(**validated_data)
-        return store
+    class Meta:
+        model = Store
+        fields = (
+            'name',
+            'description',
+            'rating',
+            'id',
+            'owner',
+            'status'
+        )
+        read_only_fields = (
+            'status',
+        )
+
