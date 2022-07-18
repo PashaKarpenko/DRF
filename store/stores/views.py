@@ -17,7 +17,8 @@ from django.contrib.auth.models import User
 @api_view(http_method_names=['GET'])
 def today(request):
     today = date.today()
-    return Response({'date': today, 'year': today.year, 'month': today.month, 'day': today.day })
+    date_d_m_y = date.today().strftime('%d/%m/%Y')
+    return Response({'date': date_d_m_y, 'year': today.year, 'month': today.month, 'day': today.day })
 
 
 @api_view(http_method_names=['GET'])
